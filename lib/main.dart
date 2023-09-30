@@ -1,125 +1,148 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+void main (){
+  runApp(Myapp());
 }
+class Myapp extends StatelessWidget{
+  const Myapp({super.key});
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  @override
+  Widget build(context) {
+  return const MaterialApp(home: HomeActivity(),);
+  }
 
-  // This widget is the root of your application.
+}
+class HomeActivity extends StatelessWidget {
+  const HomeActivity({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return Scaffold(
+      appBar: AppBar(title: Text('Profile'),),
+      body:
+      OrientationBuilder(
+        builder: (context, Orientation orientation) {
+          return orientation == Orientation.portrait
+              ? _buildPortraitView()
+              : _buildLandscapeView();
+        },
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+
     );
   }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
   }
 
+  class _buildPortraitView extends StatelessWidget
+  {
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+  return Scaffold(
+    body: Center(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              width: 300,
+              height: 300,
+              // decoration: BoxDecoration(borderRadius: BorderRadius.circular(150) ),
+              margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(150),
+                  child: Image.network("https://images.unsplash.com/photo-1586810724476-c294fb7ac01b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80",fit: BoxFit.fill,)),),
+            Text('Golam Shahriar Toky' ,style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),),
+            SizedBox(height: 10,),
+            Wrap(
+              children: [
+                Container( height: 230,width: 400,child: Text('Lorem ipsum dolor sit amet, . Cras dapibus. Vivamus elementum semper nisi.  Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,'))
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            GridView.builder(shrinkWrap: true,
+              gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,crossAxisSpacing: 2),
+              itemCount: 6,
+              itemBuilder: (context, index){
+                return Container(
+                  width: 50,
+                  height: 50,
+                  margin: EdgeInsets.all(3),
+                  child: Image.network('https://images.unsplash.com/photo-1586810724476-c294fb7ac01b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80',fit: BoxFit.fill,),
+                );
+
+
+              },
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    ),
+
+
+
+
+  );
   }
-}
+
+  }
+  class _buildLandscapeView extends StatelessWidget
+  {
+  @override
+  Widget build(BuildContext context) {
+  return Scaffold(
+    body: SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            flex: 40,
+            child: Container(
+              width: 350,
+              height: 350,
+        // decoration: BoxDecoration(borderRadius: BorderRadius.circular(150) ),
+              margin: EdgeInsets.fromLTRB(10, 5, 0, 0),
+              child: ClipRRect( borderRadius: BorderRadius.circular(200),child: Image.network("https://images.unsplash.com/photo-1586810724476-c294fb7ac01b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80",fit: BoxFit.fill,)),),
+          ),
+          // SizedBox(width: 5,),
+          Expanded(
+            flex: 60,
+            child: Column(
+              children: [
+                Text('Golam Shahriar Toky' ,style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),),
+            SizedBox(height: 5,),
+                Container(
+                    width: 400,
+                    child: Text(' Lorem ipsum dolor sit amet, . Cras dapibus. Vivamus elementum semper nisi.  Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,'))
+            ,
+                Container(
+
+                  width: 400 ,
+                  child: GridView.builder(shrinkWrap: true,
+                    gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,crossAxisSpacing: 2),
+                    itemCount: 6,
+                    itemBuilder: (context, index){
+                      return Container(
+                        width: 50,
+                        height: 50,
+                        margin: EdgeInsets.all(3),
+                        child: Image.network('https://images.unsplash.com/photo-1586810724476-c294fb7ac01b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1936&q=80',fit: BoxFit.fill,),
+                      );
+
+
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+        ],
+      ),
+    ),
+  );
+  }
+
+  }
+
